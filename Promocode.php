@@ -25,7 +25,7 @@ require_once './Shared/Sidebar.php';
                     <div class="card-body pb-0">
                         <h5 class="card-title">Promo Codes</span></h5>
 
-                        <table class="table table-borderless">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Product</th>
@@ -35,14 +35,14 @@ require_once './Shared/Sidebar.php';
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                                    <td><span class="fw-bold">Ut inventore ipsa voluptas nulla</span></td>
                                     <td>$64</td>
                                     <td>
                                         <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
+                                    <td><span class="fw-bold">Exercitationem similique doloremque</span></td>
                                     <td class="fw-bold">98</td>
                                     <td>
                                         <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
@@ -111,7 +111,6 @@ require_once './Shared/Sidebar.php';
 
 
 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/main.js"></script>
 
 

@@ -2,15 +2,17 @@
 :root {
   scroll-behavior: smooth;
   --one-color- : rgb(34, 40, 49);
-  --two-color- :rgb(57, 62, 70);
-  --third-color : rgb(0, 173, 181);
-  --fourth-color: rgb(238, 238, 238);
+  --two-color- :#393e46;
+  --third-color : #00adb5;
+  --fourth-color: #eeeeee;
+  --sixth-color : #DBE2EF;
 }
-
+*{
+  font-family: 'Roboto Condensed', sans-serif;
+}
 body {
-  font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
-  color: #444444;
+  font-family: 'Roboto Condensed', sans-serif;
+  background-color: var(--sixth-color);
 }
 
 a {
@@ -107,6 +109,7 @@ h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  background-color: var(--fourth-color);
 }
 
 .card-header,
@@ -163,7 +166,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: var(--third-color);
   font-family: "Nunito", sans-serif;
 }
 
@@ -172,7 +175,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: var(--one-color-);
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -182,10 +185,37 @@ h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: #012970;
+  color: var(--third-color);
 }
 
+.header-nav ul {
+  list-style: none;
+}
 
+.header-nav>ul {
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav .nav-icon {
+  font-size: 22px;
+  color: #012970;
+  margin-right: 25px;
+  position: relative;
+}
+
+.header-nav .nav-profile {
+  color: var(--third-color) !important;
+}
+
+.header-nav .nav-profile img {
+  max-height: 36px;
+}
+
+.header-nav .nav-profile span {
+  font-size: 14px;
+  font-weight: 600;
+}
 
 /*--------------------------------------------------------------
 # Sidebar
@@ -203,7 +233,7 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: var(--one-color-);
 }
 
 @media (max-width: 1199px) {
@@ -284,21 +314,22 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: #fff;
+  color: var(--fourth-color);
+  background: var(--one-color-);
+  transition: all 0.7s;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: var(--sixth-color);
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: var(--one-color-);
+  background: var(--fourth-color);
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: var(--one-color-);
 }
 
 .sidebar-nav .nav-content {
@@ -357,20 +388,19 @@ h6 {
 }
 
 .dashboard .sales-card .card-icon {
-  color: #4154f1;
-  background: #f6f6fe;
+  color: #ffffff;
+  background: #0e0ea8;
 }
 
 .dashboard .revenue-card .card-icon {
-  color: #2eca6a;
-  background: #e0f8e9;
+  color: #19c65c;
+  background: #a5ffc7;
 }
 
 .dashboard .customers-card .card-icon {
-  color: #ff771d;
-  background: #ffecdf;
+  color: #ff6905;
+  background: #ffc49b;
 }
-
 
 
 
@@ -415,4 +445,17 @@ h6 {
   text-align: center;
   font-size: 13px;
   color: #012970;
+}
+table{
+  background-color: var(--fourth-color) !important;
+}
+th{
+  color: var(--two-color-) !important;
+}
+td a{ 
+  color: var(--one-color-) !important;
+}
+
+.border-colored{
+  border-color: var(--third-color);
 }

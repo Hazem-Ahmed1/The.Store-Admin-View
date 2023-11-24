@@ -91,45 +91,45 @@ require_once './Shared/Sidebar.php';
                     <div class="col-12">
                         <div class="card top-selling overflow-auto">
                             <div class="card-body pb-0">
-                                <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                                <h5 class="card-title">Top Selling</h5>
 
-                                <table class="table table-borderless">
+                                <table class="table table-border">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Preview</th>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Sold</th>
+                                            <th>Preview</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Sold</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                                            <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
+                                            <th><span><img src="assets/img/product-1.jpg" alt=""></span></th>
+                                            <td><span class="fw-bold">Ut inventore ipsa voluptas nulla</span></td>
                                             <td>$64</td>
                                             <td class="fw-bold">124</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                                            <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
+                                            <th><span><img src="assets/img/product-2.jpg" alt=""></span></th>
+                                            <td><span class="fw-bold">Exercitationem similique doloremque</span></td>
                                             <td>$46</td>
                                             <td class="fw-bold">98</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                                            <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
+                                            <th><span><img src="assets/img/product-3.jpg" alt=""></span></th>
+                                            <td><span class="fw-bold">Doloribus nisi exercitationem</span></td>
                                             <td>$59</td>
                                             <td class="fw-bold">74</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                                            <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
+                                            <th><span><img src="assets/img/product-4.jpg" alt=""></span></th>
+                                            <td><span class="fw-bold">Officiis quaerat sint rerum error</span></td>
                                             <td>$32</td>
                                             <td class="fw-bold">63</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                                            <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
+                                            <th><span><img src="assets/img/product-5.jpg" alt=""></span></th>
+                                            <td><span class="fw-bold">Sit unde debitis delectus repellendus</span></td>
                                             <td>$79</td>
                                             <td class="fw-bold">41</td>
                                         </tr>
@@ -150,7 +150,7 @@ require_once './Shared/Sidebar.php';
 
 </main>
 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <script src="assets/js/main.js"></script>
 
 

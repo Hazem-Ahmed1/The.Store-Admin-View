@@ -19,7 +19,7 @@ require_once './Shared/Sidebar.php';
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Primary Color Bordered Table -->
-                    <table class="table table-bordered border-primary">
+                    <table class="table table-bordered border-colored shadow">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -95,7 +95,6 @@ require_once './Shared/Sidebar.php';
 
 
 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/main.js"></script>
 
 
