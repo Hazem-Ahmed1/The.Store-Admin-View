@@ -2,6 +2,8 @@
 require_once './../Shared/Links.php';
 require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
+require_once __DIR__ ."../../Models/DBManager.php"; 
+
 ?>
 
 
@@ -22,48 +24,28 @@ require_once './../Shared/Sidebar.php';
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Age</th>
-                                <th>Start Date</th>
+                                <th>Customer Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Joining Date</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                            $db = DBManager::getInstance();
+                            # retreving customers data 
+                            $custs = $db->select("Select userID, username, email, phone, DateOfCreation From Users where role = 'customer'");
+                            ?>
+                            <?php foreach ($custs as $cust) : ?>
                             <tr>
-                                <th>1</th>
-                                <td>Brandon Jacob</td>
-                                <td>Designer</td>
-                                <td>28</td>
-                                <td>2016-05-25</td>
+                                <th><?php echo $cust['userID']; ?></th>
+                                <td><?php echo $cust['username']; ?></td>
+                                <td><?php echo $cust['phone']; ?></td>
+                                <td><?php echo $cust['email']; ?></td>
+                                <td><?php echo $cust['DateOfCreation']; ?></td>
                             </tr>
-                            <tr>
-                                <th>2</th>
-                                <td>Bridie Kessler</td>
-                                <td>Developer</td>
-                                <td>35</td>
-                                <td>2014-12-05</td>
-                            </tr>
-                            <tr>
-                                <th>3</th>
-                                <td>Ashleigh Langosh</td>
-                                <td>Finance</td>
-                                <td>45</td>
-                                <td>2011-08-12</td>
-                            </tr>
-                            <tr>
-                                <th>4</th>
-                                <td>Angus Grady</td>
-                                <td>HR</td>
-                                <td>34</td>
-                                <td>2012-06-11</td>
-                            </tr>
-                            <tr>
-                                <th>5</th>
-                                <td>Raheem Lehner</td>
-                                <td>Dynamic Division Officer</td>
-                                <td>47</td>
-                                <td>2011-04-19</td>
-                            </tr>
+                            <?php endforeach; ?>
+
                         </tbody>
                     </table>
                 </div>
