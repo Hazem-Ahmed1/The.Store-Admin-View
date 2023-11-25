@@ -2,6 +2,7 @@
 require_once './../Shared/Links.php';
 require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
+require_once __DIR__ . "../../Models/DBManager.php";
 ?>
 
 
@@ -12,7 +13,7 @@ require_once './../Shared/Sidebar.php';
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Categories</h1>
+        <h1>Products</h1>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -24,66 +25,55 @@ require_once './../Shared/Sidebar.php';
                     <div class="col-12">
                         <div class="card top-selling overflow-auto">
                             <div class="card-body pb-0">
-                                <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                                <!-- <h5 class="card-title">Top Selling <span>| Today</span></h5> -->
+                                <h5 class="card-title">Products</h5>
 
                                 <table class="table table-border">
+                                    <?php
+                                    $db = DBManager::getInstance();
+                                    # An INNER JOIN returns only the rows where there is a match in both tables based on the specified condition
+                                    $prods = $db->select("SELECT p.productID, p.productName, p.price, p.stockQuantity, p.numSales, p.categoryID, p.imgURL, c.categoryName FROM Products p JOIN Categories c ON p.categoryID = c.categoryID");
+                                    ?>
                                     <thead>
                                         <tr>
+                                            <th>Product ID</th>
                                             <th>Preview</th>
                                             <th>Product</th>
                                             <th>Price</th>
-                                            <th>Data</th>
+                                            <th>Stock</th>
+                                            <th>Sales</th>
+                                            <th>Category</th>
                                             <th>Edit</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th><span><img src="../assets/img/product-1.jpg" alt=""></span></th>
-                                            <td><span class="fw-bold">Ut inventore ipsa voluptas nulla</span></td>
-                                            <td>$64</td>
-                                            <td class="fw-bold">124</td>
-                                            <td>
-                                                <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th><span><img src="../assets/img/product-2.jpg" alt=""></span></th>
-                                            <td><span class="fw-bold">Exercitationem similique doloremque</span></td>
-                                            <td>$46</td>
-                                            <td class="fw-bold">98</td>
-                                            <td>
-                                                <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </td>
+                                    <?php
+                                    # helper function to chooce unique color for each category
+                                    function getCategoryColor($categoryName)
+                                    {
+                                        $hash = md5($categoryName);
+                                        return '#' . substr($hash, 0, 6);
+                                    }
+                                    ?>
+                                    <?php foreach ($prods as $row) : ?>
 
-                                        </tr>
-                                        <tr>
-                                            <th><span><img src="../assets/img/product-3.jpg" alt=""></span></th>
-                                            <td><span class="fw-bold">Doloribus nisi exercitationem</span></td>
-                                            <td>$59</td>
-                                            <td class="fw-bold">74</td>
-                                            <td>
-                                                <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th><span><img src="../assets/img/product-4.jpg" alt=""></span></th>
-                                            <td><span class="fw-bold">Officiis quaerat sint rerum error</span></td>
-                                            <td>$32</td>
-                                            <td class="fw-bold">63</td>
-                                            <td>
-                                                <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th><span><img src="../assets/img/product-5.jpg" alt=""></span></th>
-                                            <td><span class="fw-bold">Sit unde debitis delectus repellendus</span></td>
-                                            <td>$79</td>
-                                            <td class="fw-bold">41</td>
-                                            <td>
-                                                <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td><span class="fw-bold"><?php echo $row['productID']; ?></span></td>
+                                                <th><span><img src="<?php echo $row['imgURL']; ?>" alt=""></span></th>
+                                                <td><span class="fw-bold"><?php echo $row['productName']; ?></span></td>
+                                                <td><?php echo $row['price']; ?></td>
+                                                <td><?php echo $row['stockQuantity']; ?></td>
+                                                <td class="fw-bold"><?php echo $row['numSales']; ?></td>
+                                                <td>
+
+                                                    <div style="background-color: <?php echo getCategoryColor($row['categoryName']); ?>; padding: 5px; border-radius: 5px;"><?php echo $row['categoryName']; ?></div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    <?php endforeach; ?>
                                 </table>
 
                             </div>
