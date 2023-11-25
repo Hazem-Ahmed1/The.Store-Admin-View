@@ -2,6 +2,7 @@
 require_once './../Shared/Links.php';
 require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
+require_once __DIR__ . "../../Models/DBManager.php";
 ?>
 
 
@@ -14,10 +15,27 @@ require_once './../Shared/Sidebar.php';
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Categories</h1>
+        <h1>Promocodes</h1>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+        <?php 
+        global $db;
+        $db = DBManager::getInstance();
+        $promos = $db->select("SELECT * FROM Promocode");
+        function deletePromoCode($promoCode) {
+            global $db;
+            $db->delete("Promocode", $promoCode);
+        }
+        // Check for form submission for deletion
+        if(isset($_POST["promoCode"])) {
+            $promoCodeToDelete = $_POST['promoCode'];
+            deletePromoCode($promoCodeToDelete);
+            
+            // Free up the $_POST array
+            unset($_POST["promoCode"]);
+        }
+        ?>
         <div class="row">
             <!-- Top Selling -->
             <div class="col-12">
@@ -28,27 +46,30 @@ require_once './../Shared/Sidebar.php';
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Edit</th>
+                                    <th>Promocode</th>
+                                    <th>State</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php if (!empty($promos)) { 
+                                    foreach ($promos as $promo) : ?>
                                 <tr>
-                                    <td><span class="fw-bold">Ut inventore ipsa voluptas nulla</span></td>
-                                    <td>$64</td>
+                                    <td><span class="fw-bold"><?php echo $promo["promocode"]?></span></td>
+                                    <td><?php echo $promo["discount"]?> %</td>
                                     <td>
-                                        <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="promoCode" value="<?php echo $promo["promocode"] ?>">
+                                        <button type="submit" class="btn btn-danger"> <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                                      
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><span class="fw-bold">Exercitationem similique doloremque</span></td>
-                                    <td class="fw-bold">98</td>
-                                    <td>
-                                        <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                                    </td>
+                                <?php endforeach; } 
+                                else {
+                                    echo '<h2 style="background-color: red; color: white; padding: 5px; border-radius: 5px;">No promocodes available</h2>';
+                                }?>
 
-                                </tr>
                             </tbody>
                         </table>
 
