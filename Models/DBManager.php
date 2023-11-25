@@ -46,6 +46,7 @@ class DBManager {
         // Return result
         return $result;
     }
+    # tested select ✅
     public function select($stmt){
         $result=$this->conn->query($stmt);
         if($result->num_rows>0){
@@ -241,6 +242,7 @@ class DBManager {
          */
     }
 
+    # tested ✅
       public function apply_function_to_column($function, $table_name, $column_name, $condition_column = null, $condition_value = null) {
         if ($condition_column && $condition_value) {
             $sql = "SELECT $function($column_name) AS result FROM $table_name WHERE $condition_column = ?";
