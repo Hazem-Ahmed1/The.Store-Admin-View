@@ -1,7 +1,7 @@
 <?php
-require_once './Shared/Links.php';
-require_once './Shared/Header.php';
-require_once './Shared/Sidebar.php';
+require_once './../Shared/Links.php';
+require_once './../Shared/Header.php';
+require_once './../Shared/Sidebar.php';
 ?>
 
 
@@ -61,7 +61,7 @@ require_once './Shared/Sidebar.php';
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-6 col-12">
-                        <img src="./assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg" class="img-fluid" alt="">
+                        <img src="./../assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col-lg-6">
 
@@ -111,11 +111,11 @@ require_once './Shared/Sidebar.php';
 
 
 
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
 
 <?php
 
-include_once './Shared/Footer.php';
+include_once './../Shared/Footer.php';
 
 ?>

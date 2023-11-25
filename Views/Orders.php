@@ -1,7 +1,7 @@
 <?php
-require_once './Shared/Links.php';
-require_once './Shared/Header.php';
-require_once './Shared/Sidebar.php';
+require_once './../Shared/Links.php';
+require_once './../Shared/Header.php';
+require_once './../Shared/Sidebar.php';
 ?>
 
 
@@ -95,11 +95,11 @@ require_once './Shared/Sidebar.php';
 
 
 
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
 
 <?php
 
-include_once './Shared/Footer.php';
+include_once './../Shared/Footer.php';
 
 ?>

@@ -1,7 +1,7 @@
 <?php
-require_once './Shared/Links.php';
-require_once './Shared/Header.php';
-require_once './Shared/Sidebar.php';
+require_once './../Shared/Links.php';
+require_once './../Shared/Header.php';
+require_once './../Shared/Sidebar.php';
 ?>
 
 
@@ -38,7 +38,7 @@ require_once './Shared/Sidebar.php';
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th><span><img src="assets/img/product-1.jpg" alt=""></span></th>
+                                            <th><span><img src="../assets/img/product-1.jpg" alt=""></span></th>
                                             <td><span class="fw-bold">Ut inventore ipsa voluptas nulla</span></td>
                                             <td>$64</td>
                                             <td class="fw-bold">124</td>
@@ -47,7 +47,7 @@ require_once './Shared/Sidebar.php';
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><span><img src="assets/img/product-2.jpg" alt=""></span></th>
+                                            <th><span><img src="../assets/img/product-2.jpg" alt=""></span></th>
                                             <td><span class="fw-bold">Exercitationem similique doloremque</span></td>
                                             <td>$46</td>
                                             <td class="fw-bold">98</td>
@@ -57,7 +57,7 @@ require_once './Shared/Sidebar.php';
 
                                         </tr>
                                         <tr>
-                                            <th><span><img src="assets/img/product-3.jpg" alt=""></span></th>
+                                            <th><span><img src="../assets/img/product-3.jpg" alt=""></span></th>
                                             <td><span class="fw-bold">Doloribus nisi exercitationem</span></td>
                                             <td>$59</td>
                                             <td class="fw-bold">74</td>
@@ -66,7 +66,7 @@ require_once './Shared/Sidebar.php';
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><span><img src="assets/img/product-4.jpg" alt=""></span></th>
+                                            <th><span><img src="../assets/img/product-4.jpg" alt=""></span></th>
                                             <td><span class="fw-bold">Officiis quaerat sint rerum error</span></td>
                                             <td>$32</td>
                                             <td class="fw-bold">63</td>
@@ -75,7 +75,7 @@ require_once './Shared/Sidebar.php';
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th><span><img src="assets/img/product-5.jpg" alt=""></span></th>
+                                            <th><span><img src="../assets/img/product-5.jpg" alt=""></span></th>
                                             <td><span class="fw-bold">Sit unde debitis delectus repellendus</span></td>
                                             <td>$79</td>
                                             <td class="fw-bold">41</td>
@@ -144,11 +144,11 @@ require_once './Shared/Sidebar.php';
 
 
 
-<script src="assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
 
 <?php
 
-include_once './Shared/Footer.php';
+include_once './../Shared/Footer.php';
 
 ?>
