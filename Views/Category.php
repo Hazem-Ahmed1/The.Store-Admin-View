@@ -2,6 +2,7 @@
 require_once './../Shared/Links.php';
 require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
+require_once __DIR__ ."../../Models/DBManager.php"; 
 ?>
 
 <main id="main" class="main">
@@ -24,48 +25,25 @@ require_once './../Shared/Sidebar.php';
                                 <table class="table table-border">
                                     <thead>
                                         <tr>
+                                            <th> ID </th>
                                             <th>Preview</th>
                                             <th>Category Name</th>
                                         </tr>
                                     </thead>
+                                    <?php
+                                    $db = DBManager::getInstance();
+                                    $cats = $db->select("SELECT * FROM Categories");
+                                    ?>
+                                    <?php foreach ($cats as $cat) : ?>
                                     <tbody>
                                         <tr>
-                                         <th><span ><img src="../assets/img/product-1.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Ut inventore ipsa voluptas nulla</span></td>
+                                         <td><span ><?php echo $cat['categoryID']; ?></span></td>
+                                         <th><span ><img src="<?php echo $cat['imgURL']; ?>" alt=""></span></th>
+                                            <td><span  class="fw-bold"><?php echo $cat['categoryName'] ?></span></td>
                                         </tr>
-                                        <tr>
-                                          <th><spaspan ><img src="../assets/img/product-2.jpg" alt=""></spaspan></th>
-                                            <td><span  class="fw-bold">Exercitationem similique doloremque</span></td>
-                                        </tr>
-                                        <tr>
-                                          <th><spaspan ><img src="../assets/img/product-3.jpg" alt=""></spaspan></th>
-                                            <td><span  class="fw-bold">Doloribus nisi exercitationem</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th><span ><img src="../assets/img/product-4.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Officiis quaerat sint rerum error</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th><span ><img src="../assets/img/product-5.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Sit unde debitis delectus repellendus</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th><span ><img src="../assets/img/product-5.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Sit unde debitis delectus repellendus</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th><span ><img src="../assets/img/product-5.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Sit unde debitis delectus repellendus</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th><span ><img src="../assets/img/product-5.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Sit unde debitis delectus repellendus</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th><span ><img src="../assets/img/product-5.jpg" alt=""></span></th>
-                                            <td><span  class="fw-bold">Sit unde debitis delectus repellendus</span></td>
-                                        </tr>
+
                                     </tbody>
+                                    <?php endforeach;?>
                                 </table>
 
                             </div>
