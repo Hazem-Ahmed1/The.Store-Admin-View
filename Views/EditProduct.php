@@ -2,18 +2,18 @@
 require_once './../Shared/Links.php';
 require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
+require_once __DIR__ . "../../Models/DBManager.php";
 ?>
-
-
-
-
-
-
-
-
-
-
-
+<?php 
+global $db;
+$db = DBManager::getInstance();
+$product = $db->select("
+    SELECT p.*, c.categoryName
+    FROM Products p
+    JOIN Categories c ON p.categoryID = c.categoryID
+    WHERE p.productID = " . $_GET["productID"]
+);
+?>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -29,13 +29,15 @@ require_once './../Shared/Sidebar.php';
                         <div class="card shadow p-2">
                             <div class="row">
                                 <div class="col-lg-6 col-12">
-                                    <img src="../assets/img/product-2.jpg" class="img-fluid" alt="">
+                                    <img src="<?php echo $product[0]["imgURL"] ;?>" class="img-fluid" alt="">
                                 </div>
                                 <div class="col-lg-5 col-12 m-2">
-                                    <p>Product Name : <span></span></p>
-                                    <p>Product Name : <span></span></p>
-                                    <p>Product Name : <span></span></p>
-                                    <p>Product Name : <span></span></p>
+                                    <p>Product ID : <?php echo $product[0]["productID"] ;?><span></span></p>
+                                    <p>Product Name : <?php echo $product[0]["productName"] ;?> <span></span></p>
+                                    <p>Product Describtion : <?php echo $product[0]["description"] ;?> <span></span></p>
+                                    <p>Product Price :<?php echo $product[0]["price"] ;?> <span></span></p>
+                                    <p>Product Stock :<?php echo $product[0]["stockQuantity"] ;?> <span></span></p>
+                                    <p>Product Stock :<?php echo $product[0]["categoryName"] ;?> <span></span></p>
                                 </div>
                             </div>
                         </div>
