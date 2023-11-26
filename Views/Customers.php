@@ -25,8 +25,8 @@ require_once __DIR__ ."../../Models/DBManager.php";
                             <tr>
                                 <th>#</th>
                                 <th>Customer Name</th>
-                                <th>Email</th>
                                 <th>Phone</th>
+                                <th>Email</th>
                                 <th>Joining Date</th>
                             </tr>
                         </thead>
