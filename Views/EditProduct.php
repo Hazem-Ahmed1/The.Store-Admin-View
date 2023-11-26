@@ -37,7 +37,8 @@ $product = $db->select("
                                     <p>Product Describtion : <?php echo $product[0]["description"] ;?> <span></span></p>
                                     <p>Product Price :<?php echo $product[0]["price"] ;?> <span></span></p>
                                     <p>Product Stock :<?php echo $product[0]["stockQuantity"] ;?> <span></span></p>
-                                    <p>Product Stock :<?php echo $product[0]["categoryName"] ;?> <span></span></p>
+                                    <p>Product Category :<?php echo $product[0]["categoryName"] ;?> <span></span></p>
+                                    <p>Product Sales :<?php echo $product[0]["numSales"] ;?> <span></span></p>
                                 </div>
                             </div>
                         </div>
