@@ -81,23 +81,23 @@ require_once __DIR__ . "../../Models/DBManager.php";
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-6 col-12">
+                    <!-- <div class="col-lg-6 col-12">
                         <img src="./../assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-lg-6">
+                    </div> -->
+                    <div class="col-lg-12">
 
-                        <div class="card">
+                        <div class="card" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('./../assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg'); background-size: cover; ">>
                             <div class="card-body">
-                                <h5 class="card-title">Add a Promocode</h5>
+                                <h3 class="card-title" style="font-size: 60px;">Add a Promocode</h3>
                                 <form class="row g-3">
                                     <div class="col-12">
-                                        <label for="cat_name" class="form-label">Code</label>
-                                        <input type="text" class="form-control" id="cat_name">
+                                        <label for="cat_name" class="form-label" style="font-size: 40px;">Code</label>
+                                        <input type="text" class="form-control" id="cat_name" style="font-size: 50px;">
                                     </div>
                                     <div class="col-12">
-                                        <label for="img_url" class="form-label">Discount percentage</label>
+                                        <label for="img_url" class="form-label" style="font-size: 40px;">Discount percentage</label>
                                         <input type="range" min="0" max="100" value="0"  class="form-range"  id="discountRange">
-                                        <center><span id="discountValue" style="font-size: 70px;">0%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
+                                        <center><span id="discountValue" style="font-size: 200px;">0%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
                                         <script>
                                             var discountRange = document.getElementById("discountRange");
                                             var discountValueSpan = document.getElementById('discountValue');
