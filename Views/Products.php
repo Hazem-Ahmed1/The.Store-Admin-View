@@ -4,6 +4,64 @@ require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
 require_once __DIR__ . "../../Models/DBManager.php";
 ?>
+<?php
+global $db;
+$db = DBManager::getInstance();
+# An INNER JOIN returns only the rows where there is a match in both tables based on the specified condition
+$prods = $db->select("SELECT p.productID, p.productName, p.price, p.stockQuantity, p.numSales, p.categoryID, p.imgURL, c.categoryName FROM Products p JOIN Categories c ON p.categoryID = c.categoryID");
+$cats = $db->select("SELECT * FROM Categories");
+
+// Function to add a new product 
+function addNewProduct($prodName, $desc, $price, $stock, $catId, $imgURL)
+{
+    global $db;
+    $prodToAdd = array(
+        "productName" => $prodName,
+        "description" => $desc,
+        "price" => $price,
+        "stockQuantity" => $stock,
+        "categoryID" => $catId,
+        "imgURL" => $imgURL
+    );
+    $db->insert("Products", $prodToAdd);
+}
+// Check if all required fields are set to create a new product 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (
+        isset($_POST["productName"]) &&
+        isset($_POST["description"]) &&
+        isset($_POST["price"]) &&
+        isset($_POST["stockQuantity"]) &&
+        isset($_POST["proImgURL"]) &&
+        isset($_POST["categoryID"])
+    ) {
+
+        // Retrieve the values from POST data
+        $productName = $_POST["productName"];
+        $description = $_POST["description"];
+        $price = $_POST["price"];
+        $stockQuantity = $_POST["stockQuantity"];
+        $proImgURL = $_POST["proImgURL"];
+        $categoryID = $_POST["categoryID"];
+
+
+
+        # if it exist once it would be true
+        $isExist = $db->isUnique("Products", "productName", $productName);
+        if (!$isExist) {
+            // Create a new product
+            addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
+
+            //unset
+            // unset($_POST);
+
+            //Redirect to refresh the page
+            header("Location: {$_SERVER['PHP_SELF']}");
+            exit();
+        }
+    }
+}
+?>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -23,67 +81,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                 <h5 class="card-title">Products</h5>
 
                                 <table class="table table-border">
-                                    <?php
-                                    global $db;
-                                    $db = DBManager::getInstance();
-                                    # An INNER JOIN returns only the rows where there is a match in both tables based on the specified condition
-                                    $prods = $db->select("SELECT p.productID, p.productName, p.price, p.stockQuantity, p.numSales, p.categoryID, p.imgURL, c.categoryName FROM Products p JOIN Categories c ON p.categoryID = c.categoryID");
-                                    $cats = $db->select("SELECT * FROM Categories");
 
-                                    // Function to add a new product 
-                                    function addNewProduct($prodName, $desc, $price, $stock, $catId, $imgURL)
-                                    {
-                                        global $db;
-                                        $prodToAdd = array(
-                                            "productName" => $prodName,
-                                            "description" => $desc,
-                                            "price" => $price,
-                                            "stockQuantity" => $stock,
-                                            "categoryID" => $catId,
-                                            "imgURL" => $imgURL
-                                        );
-                                        $db->insert("Products", $prodToAdd);
-                                    }
-                                    // Check if all required fields are set to create a new product 
-                                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                                        if (
-                                            isset($_POST["productName"]) &&
-                                            isset($_POST["description"]) &&
-                                            isset($_POST["price"]) &&
-                                            isset($_POST["stockQuantity"]) &&
-                                            isset($_POST["proImgURL"]) &&
-                                            isset($_POST["categoryID"])
-                                        ) {
-
-                                            // Retrieve the values from POST data
-                                            $productName = $_POST["productName"];
-                                            $description = $_POST["description"];
-                                            $price = $_POST["price"];
-                                            $stockQuantity = $_POST["stockQuantity"];
-                                            $proImgURL = $_POST["proImgURL"];
-                                            $categoryID = $_POST["categoryID"];
-
-
-
-                                            # if it exist once it would be true
-                                            $isExist = $db->isUnique("Products", "productName", $productName);
-                                            if (!$isExist) {
-                                                // Create a new product
-                                                addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
-
-                                                //unset
-                                                // unset($_POST);
-
-                                                //Redirect to refresh the page
-                                                header("Location: {$_SERVER['PHP_SELF']}");
-                                                exit();
-                                            } else {
-                                                // Handle the case where not all required fields are set
-                                                echo '<div class="alert alert-danger" role="alert">Please fill in all required fields before submitting the form.</div>';
-                                            }
-                                        }
-                                    }
-                                    ?>
                                     <thead>
                                         <tr>
                                             <th>Product ID</th>
