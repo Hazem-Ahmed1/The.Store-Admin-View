@@ -51,6 +51,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                         $db->insert("Products", $prodToAdd);
                                     }   
                                     // Check if all required fields are set to create a new product 
+                                   if ($_SERVER["REQUEST_METHOD"] === "POST"){
                                     if (
                                         isset($_POST["productName"]) &&
                                         isset($_POST["description"]) &&
@@ -74,7 +75,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                         addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
 
                                         //unset
-                                        unset($_POST);
+                                        // unset($_POST);
 
                                         //Redirect to refresh the page
                                         header("Location: {$_SERVER['PHP_SELF']}");
@@ -83,6 +84,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                         // Handle the case where not all required fields are set
                                         echo '<div class="alert alert-danger" role="alert">Please fill in all required fields before submitting the form.</div>';
                                     }
+                                   }
                                     ?>
                                     <thead>
                                         <tr>
