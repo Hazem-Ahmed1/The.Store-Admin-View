@@ -73,7 +73,10 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                         // Create a new product
                                         addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
 
-                                        // Redirect to refresh the page
+                                        //unset
+                                        unset($_POST);
+
+                                        //Redirect to refresh the page
                                         header("Location: {$_SERVER['PHP_SELF']}");
                                         exit();
                                     } else {
@@ -136,30 +139,30 @@ require_once __DIR__ . "../../Models/DBManager.php";
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Add a new Product</h5>
-                        <form class="row g-3">
+                        <form class="row g-3" method="post">
                             <div class="col-12">
                                 <label for="productName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="productName" name="productName" required>
+                                <input type="text" class="form-control"  name="productName" required>
                             </div>
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
-                                <input type="text" class="form-control" id="description" name="description" minlength="30" required>
+                                <input type="text" class="form-control" name="description" minlength="30" required>
                             </div>
                             <div class="col-12">
                                 <label for="price" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="price" name="price" required min="1">
+                                <input type="number" class="form-control"  name="price" required min="1">
                             </div>
                             <div class="col-12">
                                 <label for="stockQuantity" class="form-label">Stock Quantity</label>
-                                <input type="number" class="form-control" id="stockQuantity" name="stockQuantity" min="1" required>
+                                <input type="number" class="form-control"  name="stockQuantity" min="1" required>
                             </div>
                             <div class="col-12">
                                 <label for="proImgURL" class="form-label">Product image URL</label>
-                                <input type="url" class="form-control" id="proImgURL" name="proImgURL" required>
+                                <input type="url" class="form-control"  name="proImgURL" required>
                             </div>
                             <div class="col-12">
                                 <label for="categoryID" class="form-label">Category</label>
-                                <select class="form-select" id="categoryID" name="categoryID">
+                                <select class="form-select"  name="categoryID">
                                     <?php foreach ($cats as $cat) : ?>
                                         <!-- filling this list dynamically from available categories in the database -->
                                         <option value="<?php echo $cat["categoryID"]; ?>" style="font-size: 30;"><?php echo $cat['categoryName']; ?></option>
