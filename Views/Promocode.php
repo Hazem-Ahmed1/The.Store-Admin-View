@@ -87,6 +87,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                     <th>State</th>
                                 </tr>
                             </thead>
+                            <?php print_r($_POST) ;?>
                             <tbody>
                                 <?php if (!empty($promos)) { 
                                     foreach ($promos as $promo) : ?>
@@ -132,9 +133,9 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                         <input type="text" name = "promoCodeNew" class="form-control" id="cat_name" style="font-size: 50px;">
                                     </div>
                                     <div class="col-12">
-                                        <label for="img_url" class="form-label" >Discount percentage</label>
-                                        <input type="range" min="1" max="100" value="0" name = "promoCodeDiscount" class="form-range"  id="discountRange">
-                                        <center><span id="discountValue" style="font-size: 200px;">1</span><span style="font-size: 200px;">%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
+                                        <label for="promoCodeDiscount" class="form-label" >Discount percentage</label>
+                                        <input type="range" min="1" max="100" value="1" name = "promoCodeDiscount" class="form-range"  id="discountRange">
+                                        <center><span id="discountValue" style="font-size: 200px;">1</span><span style="font-size: 200px;">%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;"></i> </center>
                                         <script>
                                             var discountRange = document.getElementById("discountRange");
                                             var discountValueSpan = document.getElementById('discountValue');
