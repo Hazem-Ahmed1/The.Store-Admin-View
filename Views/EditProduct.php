@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
     $productId = $_GET["productID"];
 
-    $updateResult = $db->update("Products", $productId, $columnsValues);
+    $db->update("Products", $productId, $columnsValues);
     header("Location: {$_SERVER['PHP_SELF']}?productID=" . $productId);
     exit();
 }
