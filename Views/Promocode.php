@@ -87,7 +87,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                     <th>State</th>
                                 </tr>
                             </thead>
-                            <?php print_r($_POST) ;?>
+                            
                             <tbody>
                                 <?php if (!empty($promos)) { 
                                     foreach ($promos as $promo) : ?>
