@@ -117,7 +117,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                                     <div style="background-color: <?php echo getCategoryColor($row['categoryName']); ?>; padding: 5px; border-radius: 5px;"><?php echo $row['categoryName']; ?></div>
                                                 </td>
                                                 <td>
+                                                    <a href= "EditProduct.php?productID=<?php echo $row['productID']; ?>">
                                                     <button class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
