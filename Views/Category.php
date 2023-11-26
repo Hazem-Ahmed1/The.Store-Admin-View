@@ -1,9 +1,9 @@
-<?php
-require_once './../Shared/Links.php';
-require_once './../Shared/Header.php';
-require_once './../Shared/Sidebar.php';
-require_once __DIR__ ."../../Models/DBManager.php"; 
-?>
+`<?php
+    require_once './../Shared/Links.php';
+    require_once './../Shared/Header.php';
+    require_once './../Shared/Sidebar.php';
+    require_once __DIR__ . "../../Models/DBManager.php";
+    ?>
 
 <main id="main" class="main">
 
@@ -12,6 +12,38 @@ require_once __DIR__ ."../../Models/DBManager.php";
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
+        <?php
+        global $db;
+        $db = DBManager::getInstance();
+        $cats = $db->select("SELECT * FROM Categories");
+
+        // function to create new category
+        function createNewCategory($catName, $imgURL) {  
+            global $db;
+            $catToCreate = array("CategoryName"=> $catName,"imgURL"=> $imgURL);
+            $db->insert("Categories", $catToCreate);
+        }
+        // create newcategory
+        if(isset($_POST["catName"]) && isset($_POST["catURL"])) {
+            $catName = $_POST["catName"];
+            $imgURL = $_POST["catURL"];
+            # if it exist once it would be true
+            $isExist = $db->isUnique("Categories", "categoryName", $catName);
+
+            # check that it doesn't exist yet
+            if(!$isExist) {
+                # create 
+                createNewCategory($catName, $imgURL);
+                # Redirect to refresh the page
+                header("Location: {$_SERVER['PHP_SELF']}");
+                exit();
+            }
+            else {  
+                echo '<div class="alert alert-danger" role="alert">This Category name already exists' . '<span>  (' . $_POST["catName"] . ')  try something new🤩</span>' . '</div>';
+            }
+        }
+
+        ?>
         <div class="row">
             <!-- Left side columns -->
             <div class="col-lg-12">
@@ -24,26 +56,22 @@ require_once __DIR__ ."../../Models/DBManager.php";
 
                                 <table class="table table-border">
                                     <thead>
-                                        <tr>
+                                        <tr>`
                                             <th> ID </th>
                                             <th>Preview</th>
                                             <th>Category Name</th>
                                         </tr>
                                     </thead>
-                                    <?php
-                                    $db = DBManager::getInstance();
-                                    $cats = $db->select("SELECT * FROM Categories");
-                                    ?>
                                     <?php foreach ($cats as $cat) : ?>
-                                    <tbody>
-                                        <tr>
-                                         <td><span ><?php echo $cat['categoryID']; ?></span></td>
-                                         <th><span ><img src="<?php echo $cat['imgURL']; ?>" alt=""></span></th>
-                                            <td><span  class="fw-bold"><?php echo $cat['categoryName'] ?></span></td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td><span><?php echo $cat['categoryID']; ?></span></td>
+                                                <th><span><img src="<?php echo $cat['imgURL']; ?>" alt=""></span></th>
+                                                <td><span class="fw-bold"><?php echo $cat['categoryName'] ?></span></td>
+                                            </tr>
 
-                                    </tbody>
-                                    <?php endforeach;?>
+                                        </tbody>
+                                    <?php endforeach; ?>
                                 </table>
 
                             </div>
@@ -55,14 +83,14 @@ require_once __DIR__ ."../../Models/DBManager.php";
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Add a new category</h5>
-                                <form class="row g-3">
+                                <form class="row g-3" method="post">
                                     <div class="col-12">
                                         <label for="cat_name" class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="cat_name">
+                                        <input type="text" class="form-control" id="cat_name" name="catName">
                                     </div>
                                     <div class="col-12">
                                         <label for="img_url" class="form-label">Image Url</label>
-                                        <input type="email" class="form-control" id="img_url">
+                                        <input type="url" class="form-control" id="img_url"  name="catURL">
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="col-12 btn btn-warning">Add</button>
