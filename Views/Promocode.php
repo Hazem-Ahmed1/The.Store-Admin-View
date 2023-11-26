@@ -43,6 +43,10 @@ require_once __DIR__ . "../../Models/DBManager.php";
             
             // Free up the $_POST array
             unset($_POST["promoCode"]);
+
+            # refresh the page
+            header("Location: {$_SERVER['PHP_SELF']}");
+            exit();
         }
         // Check for the Creation of promocode
         if(isset($_POST["promoCodeNew"]) && isset($_POST["promoCodeDiscount"])) {
@@ -53,11 +57,14 @@ require_once __DIR__ . "../../Models/DBManager.php";
             if(!$isExist) {
                  # create 
                   CreatePromoCode($codeToCreate, $discountToCreate);
-                  
+                  // Redirect to refresh the page
+                header("Location: {$_SERVER['PHP_SELF']}");
+                exit();
 
             } 
             else {    
-                echo '<div class="alert alert-danger" role="alert">This promocode exist before </div>';
+                echo '<div class="alert alert-danger" role="alert">This promocode already exists' . '<span>  (' . $_POST["promoCodeNew"] . ')  try something new🤩</span>' . '</div>';
+
             }
 
             # free the POST 
@@ -70,6 +77,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
             <div class="col-12">
                 <div class="card top-selling overflow-auto">
                     <div class="card-body pb-0">
+
                         <h5 class="card-title">Promo Codes</span></h5>
 
                         <table class="table table-bordered">
@@ -115,7 +123,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                     </div> -->
                     <div class="col-lg-12">
 
-                        <div class="card" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('./../assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg'); background-size: cover; ">>
+                        <div class="card" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('./../assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg'); background-size: cover; ">
                             <div class="card-body">
                                 <h3 class="card-title" style="font-size: 60px;">Add a Promocode</h3>
                                 <form class="row g-3"  method="post">
