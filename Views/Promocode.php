@@ -134,12 +134,13 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                     <div class="col-12">
                                         <label for="img_url" class="form-label" >Discount percentage</label>
                                         <input type="range" min="1" max="100" value="0" name = "promoCodeDiscount" class="form-range"  id="discountRange">
-                                        <center><span id="discountValue" style="font-size: 200px;">1%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
+                                        <center><span id="discountValue" style="font-size: 200px;">1</span><span style="font-size: 200px;">%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
                                         <script>
                                             var discountRange = document.getElementById("discountRange");
                                             var discountValueSpan = document.getElementById('discountValue');
                                             discountRange.addEventListener('input', function(){
-                                                discountValueSpan.textContent = discountRange.value+"%"; 
+                                                discountValueSpan.textContent = discountRange.value; 
+                            
                                             });
                                         </script>
 
