@@ -36,6 +36,12 @@ require_once __DIR__ . "../../Models/DBManager.php";
             $db->insert("Promocode", $promoCodeToCreate);   
 
         }
+        function validate($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
         // Check for form submission for deletion
         if(isset($_POST["promoCode"])) {
             $promoCodeToDelete = $_POST['promoCode'];
@@ -50,8 +56,8 @@ require_once __DIR__ . "../../Models/DBManager.php";
         }
         // Check for the Creation of promocode
         if(isset($_POST["promoCodeNew"]) && isset($_POST["promoCodeDiscount"])) {
-            $codeToCreate = $_POST["promoCodeNew"];
-            $discountToCreate = $_POST["promoCodeDiscount"];
+            $codeToCreate = validate($_POST["promoCodeNew"]);
+            $discountToCreate = validate($_POST["promoCodeDiscount"]);
             # if it exist once it would be true
             $isExist = $db->isUnique("Promocode", "promocode", $codeToCreate);
             if(!$isExist) {
@@ -130,7 +136,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                 <form class="row g-3"  method="post">
                                     <div class="col-12">
                                         <label for="cat_name" class="form-label" style="font-size: 40px;">Code</label>
-                                        <input type="text" name = "promoCodeNew" class="form-control" id="cat_name" style="font-size: 50px;">
+                                        <input type="text" name = "promoCodeNew" class="form-control" id="cat_name" style="font-size: 50px;" minlength="6" required>
                                     </div>
                                     <div class="col-12">
                                         <label for="promoCodeDiscount" class="form-label" >Discount percentage</label>
