@@ -41,7 +41,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                     echo '<tr>';
                                     echo '<th>' . $data['orderID'] . '</th>';
                                     echo '<th>' . $data['userID'] . '</th>';
-                                    echo '<th>' . $data['totalAmount'] . '</th>';
+                                    echo '<th>' . $data['totalAmount'] .'$'. '</th>';
                                     echo '<th>' . $data['address1'] . '</th>';
                                     echo '<th>' . $data['address2'] . '</th>';
                                     echo '<th>' . $data['additionalPhone'] . '</th>';

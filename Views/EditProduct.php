@@ -5,6 +5,8 @@ require_once './../Shared/Sidebar.php';
 require_once __DIR__ . "../../Models/DBManager.php";
 ?>
 <?php 
+
+
 global $db;
 $db = DBManager::getInstance();
 $product = $db->select("
@@ -13,6 +15,25 @@ $product = $db->select("
     JOIN Categories c ON p.categoryID = c.categoryID
     WHERE p.productID = " . $_GET["productID"]
 );
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $newPrice = $_POST['price_'];
+    $newStock = $_POST['stock_'];
+    $columnsValues = [
+        "price" => $newPrice,
+        "stockQuantity" => $newStock
+    ];
+    $productId = $_GET["productID"];
+
+    $updateResult = $db->update("Products",$productId,$columnsValues);
+
+    if ($updateResult) {
+        header("Location: {$_SERVER['PHP_SELF']}");
+    } else {
+        echo'Error';
+    }
+}
+
 ?>
 <main id="main" class="main">
 
@@ -48,19 +69,20 @@ $product = $db->select("
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Add a new category</h5>
-                                <form class="row g-3">
+                                <form class="row g-3" method="post">
                                     <div class="col-12">
-                                        <label for="cat_name" class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="cat_name">
+                                        <label for="price_" class="form-label">Price </label>
+                                        <input type="number" class="form-control" id="price_" name="price_">
                                     </div>
                                     <div class="col-12">
-                                        <label for="img_url" class="form-label">Image Url</label>
-                                        <input type="email" class="form-control" id="img_url">
+                                        <label for="stock_" class="form-label">Stock</label>
+                                        <input type="number" class="form-control" id="stock_" name="stock_">
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="col-12 btn btn-primary">Update</button>
                                     </div>
-                                </form><!-- Vertical Form -->
+                                </form>
+                                <!-- Vertical Form -->
 
                             </div>
                         </div>
