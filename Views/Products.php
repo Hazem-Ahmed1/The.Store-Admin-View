@@ -4,12 +4,6 @@ require_once './../Shared/Header.php';
 require_once './../Shared/Sidebar.php';
 require_once __DIR__ . "../../Models/DBManager.php";
 ?>
-
-
-
-
-
-
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -45,46 +39,50 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                             "description" => $desc,
                                             "price" => $price,
                                             "stockQuantity" => $stock,
-                                            "categoryID" => $catId, 
-                                            "imgURL"=> $imgURL
+                                            "categoryID" => $catId,
+                                            "imgURL" => $imgURL
                                         );
                                         $db->insert("Products", $prodToAdd);
-                                    }   
-                                    // Check if all required fields are set to create a new product 
-                                   if ($_SERVER["REQUEST_METHOD"] === "POST"){
-                                    if (
-                                        isset($_POST["productName"]) &&
-                                        isset($_POST["description"]) &&
-                                        isset($_POST["price"]) &&
-                                        isset($_POST["stockQuantity"]) &&
-                                        isset($_POST["proImgURL"]) &&
-                                        isset($_POST["categoryID"])
-                                    ) {
-                                        
-                                        // Retrieve the values from POST data
-                                        $productName = $_POST["productName"];
-                                        $description= $_POST["description"];
-                                        $price = $_POST["price"];
-                                        $stockQuantity = $_POST["stockQuantity"];
-                                        $proImgURL = $_POST["proImgURL"];
-                                        $categoryID = $_POST["categoryID"];
-
-                                        // Add more validation if needed
-
-                                        // Create a new product
-                                        addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
-
-                                        //unset
-                                        // unset($_POST);
-
-                                        //Redirect to refresh the page
-                                        header("Location: {$_SERVER['PHP_SELF']}");
-                                        exit();
-                                    } else {
-                                        // Handle the case where not all required fields are set
-                                        echo '<div class="alert alert-danger" role="alert">Please fill in all required fields before submitting the form.</div>';
                                     }
-                                   }
+                                    // Check if all required fields are set to create a new product 
+                                    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                                        if (
+                                            isset($_POST["productName"]) &&
+                                            isset($_POST["description"]) &&
+                                            isset($_POST["price"]) &&
+                                            isset($_POST["stockQuantity"]) &&
+                                            isset($_POST["proImgURL"]) &&
+                                            isset($_POST["categoryID"])
+                                        ) {
+
+                                            // Retrieve the values from POST data
+                                            $productName = $_POST["productName"];
+                                            $description = $_POST["description"];
+                                            $price = $_POST["price"];
+                                            $stockQuantity = $_POST["stockQuantity"];
+                                            $proImgURL = $_POST["proImgURL"];
+                                            $categoryID = $_POST["categoryID"];
+
+
+
+                                            # if it exist once it would be true
+                                            $isExist = $db->isUnique("Products", "productName", $productName);
+                                            if (!$isExist) {
+                                                // Create a new product
+                                                addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
+
+                                                //unset
+                                                // unset($_POST);
+
+                                                //Redirect to refresh the page
+                                                header("Location: {$_SERVER['PHP_SELF']}");
+                                                exit();
+                                            } else {
+                                                // Handle the case where not all required fields are set
+                                                echo '<div class="alert alert-danger" role="alert">Please fill in all required fields before submitting the form.</div>';
+                                            }
+                                        }
+                                    }
                                     ?>
                                     <thead>
                                         <tr>
@@ -144,7 +142,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                         <form class="row g-3" method="post">
                             <div class="col-12">
                                 <label for="productName" class="form-label">Product Name</label>
-                                <input type="text" class="form-control"  name="productName" required>
+                                <input type="text" class="form-control" name="productName" required>
                             </div>
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
@@ -152,19 +150,19 @@ require_once __DIR__ . "../../Models/DBManager.php";
                             </div>
                             <div class="col-12">
                                 <label for="price" class="form-label">Price</label>
-                                <input type="number" class="form-control"  name="price" required min="1">
+                                <input type="number" class="form-control" name="price" required min="1">
                             </div>
                             <div class="col-12">
                                 <label for="stockQuantity" class="form-label">Stock Quantity</label>
-                                <input type="number" class="form-control"  name="stockQuantity" min="1" required>
+                                <input type="number" class="form-control" name="stockQuantity" min="1" required>
                             </div>
                             <div class="col-12">
                                 <label for="proImgURL" class="form-label">Product image URL</label>
-                                <input type="url" class="form-control"  name="proImgURL" required>
+                                <input type="url" class="form-control" name="proImgURL" required>
                             </div>
                             <div class="col-12">
                                 <label for="categoryID" class="form-label">Category</label>
-                                <select class="form-select"  name="categoryID">
+                                <select class="form-select" name="categoryID">
                                     <?php foreach ($cats as $cat) : ?>
                                         <!-- filling this list dynamically from available categories in the database -->
                                         <option value="<?php echo $cat["categoryID"]; ?>" style="font-size: 30;"><?php echo $cat['categoryName']; ?></option>
