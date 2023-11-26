@@ -30,10 +30,56 @@ require_once __DIR__ . "../../Models/DBManager.php";
 
                                 <table class="table table-border">
                                     <?php
+                                    global $db;
                                     $db = DBManager::getInstance();
                                     # An INNER JOIN returns only the rows where there is a match in both tables based on the specified condition
                                     $prods = $db->select("SELECT p.productID, p.productName, p.price, p.stockQuantity, p.numSales, p.categoryID, p.imgURL, c.categoryName FROM Products p JOIN Categories c ON p.categoryID = c.categoryID");
                                     $cats = $db->select("SELECT * FROM Categories");
+
+                                    // Function to add a new product 
+                                    function addNewProduct($prodName, $desc, $price, $stock, $catId, $imgURL)
+                                    {
+                                        global $db;
+                                        $prodToAdd = array(
+                                            "productName" => $prodName,
+                                            "description" => $desc,
+                                            "price" => $price,
+                                            "stockQuantity" => $stock,
+                                            "categoryID" => $catId, 
+                                            "imgURL"=> $imgURL
+                                        );
+                                        $db->insert("Products", $prodToAdd);
+                                    }   
+                                    // Check if all required fields are set to create a new product 
+                                    if (
+                                        isset($_POST["productName"]) &&
+                                        isset($_POST["description"]) &&
+                                        isset($_POST["price"]) &&
+                                        isset($_POST["stockQuantity"]) &&
+                                        isset($_POST["proImgURL"]) &&
+                                        isset($_POST["categoryID"])
+                                    ) {
+                                        
+                                        // Retrieve the values from POST data
+                                        $productName = $_POST["productName"];
+                                        $description= $_POST["description"];
+                                        $price = $_POST["price"];
+                                        $stockQuantity = $_POST["stockQuantity"];
+                                        $proImgURL = $_POST["proImgURL"];
+                                        $categoryID = $_POST["categoryID"];
+
+                                        // Add more validation if needed
+
+                                        // Create a new product
+                                        addNewProduct($productName, $description, $price, $stockQuantity, $categoryID, $proImgURL);
+
+                                        // Redirect to refresh the page
+                                        header("Location: {$_SERVER['PHP_SELF']}");
+                                        exit();
+                                    } else {
+                                        // Handle the case where not all required fields are set
+                                        echo '<div class="alert alert-danger" role="alert">Please fill in all required fields before submitting the form.</div>';
+                                    }
                                     ?>
                                     <thead>
                                         <tr>
@@ -90,7 +136,7 @@ require_once __DIR__ . "../../Models/DBManager.php";
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Add a new Product</h5>
-                        <form class="row g-3" >
+                        <form class="row g-3">
                             <div class="col-12">
                                 <label for="productName" class="form-label">Product Name</label>
                                 <input type="text" class="form-control" id="productName" name="productName" required>
@@ -108,12 +154,16 @@ require_once __DIR__ . "../../Models/DBManager.php";
                                 <input type="number" class="form-control" id="stockQuantity" name="stockQuantity" min="1" required>
                             </div>
                             <div class="col-12">
+                                <label for="proImgURL" class="form-label">Product image URL</label>
+                                <input type="url" class="form-control" id="proImgURL" name="proImgURL" required>
+                            </div>
+                            <div class="col-12">
                                 <label for="categoryID" class="form-label">Category</label>
                                 <select class="form-select" id="categoryID" name="categoryID">
-                                    <?php foreach($cats as $cat) : ?>
-                                    <!-- filling this list dynamically from available categories in the database -->
-                                    <option value="<?php echo $cat["categoryID"];?>" style="font-size: 30;"><?php echo $cat['categoryName']; ?></option>
-                                    <?php endforeach;?>
+                                    <?php foreach ($cats as $cat) : ?>
+                                        <!-- filling this list dynamically from available categories in the database -->
+                                        <option value="<?php echo $cat["categoryID"]; ?>" style="font-size: 30;"><?php echo $cat['categoryName']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="text-center">
