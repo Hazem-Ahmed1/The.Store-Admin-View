@@ -27,6 +27,15 @@ require_once __DIR__ . "../../Models/DBManager.php";
             global $db;
             $db->delete("Promocode", $promoCode);
         }
+        function CreatePromoCode($promoCode, float $discount){
+            global $db;
+            $promoCodeToCreate = array(
+                "promocode" => $promoCode,
+                "discount"  => $discount
+            );
+            $db->insert("Promocode", $promoCodeToCreate);   
+
+        }
         // Check for form submission for deletion
         if(isset($_POST["promoCode"])) {
             $promoCodeToDelete = $_POST['promoCode'];
@@ -34,6 +43,26 @@ require_once __DIR__ . "../../Models/DBManager.php";
             
             // Free up the $_POST array
             unset($_POST["promoCode"]);
+        }
+        // Check for the Creation of promocode
+        if(isset($_POST["promoCodeNew"]) && isset($_POST["promoCodeDiscount"])) {
+            $codeToCreate = $_POST["promoCodeNew"];
+            $discountToCreate = $_POST["promoCodeDiscount"];
+            # if it exist once it would be true
+            $isExist = $db->isUnique("Promocode", "promocode", $codeToCreate);
+            if(!$isExist) {
+                 # create 
+                  CreatePromoCode($codeToCreate, $discountToCreate);
+                  
+
+            } 
+            else {    
+                echo '<div class="alert alert-danger" role="alert">This promocode exist before </div>';
+            }
+
+            # free the POST 
+            unset($_POST["promoCodeNew"], $_POST["promoCodeDiscount"]);
+
         }
         ?>
         <div class="row">
@@ -89,15 +118,15 @@ require_once __DIR__ . "../../Models/DBManager.php";
                         <div class="card" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('./../assets/img/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg'); background-size: cover; ">>
                             <div class="card-body">
                                 <h3 class="card-title" style="font-size: 60px;">Add a Promocode</h3>
-                                <form class="row g-3">
+                                <form class="row g-3"  method="post">
                                     <div class="col-12">
                                         <label for="cat_name" class="form-label" style="font-size: 40px;">Code</label>
-                                        <input type="text" class="form-control" id="cat_name" style="font-size: 50px;">
+                                        <input type="text" name = "promoCodeNew" class="form-control" id="cat_name" style="font-size: 50px;">
                                     </div>
                                     <div class="col-12">
-                                        <label for="img_url" class="form-label" style="font-size: 40px;">Discount percentage</label>
-                                        <input type="range" min="0" max="100" value="0"  class="form-range"  id="discountRange">
-                                        <center><span id="discountValue" style="font-size: 200px;">0%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
+                                        <label for="img_url" class="form-label" >Discount percentage</label>
+                                        <input type="range" min="1" max="100" value="0" name = "promoCodeDiscount" class="form-range"  id="discountRange">
+                                        <center><span id="discountValue" style="font-size: 200px;">1%</span><i class="fa-solid fa-tag fa-2xl" style="color: #cf3a50;" "></i> </center>
                                         <script>
                                             var discountRange = document.getElementById("discountRange");
                                             var discountValueSpan = document.getElementById('discountValue');
