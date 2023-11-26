@@ -66,5 +66,8 @@ CREATE TABLE OrderDetails (
 -- Promocode Table
 CREATE TABLE Promocode (
     promocode VARCHAR(255) PRIMARY KEY,
-    discount DECIMAL(3, 2)
+    -- discount DECIMAL(3, 2)
+    discount INT CHECK (discount >= 0 AND discount <= 100)
 );
+ALTER TABLE Promocode
+MODIFY COLUMN discount INT CHECK (discount >= 0 AND discount <= 100);
