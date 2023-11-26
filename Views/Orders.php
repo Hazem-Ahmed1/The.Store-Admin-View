@@ -10,7 +10,8 @@ require_once __DIR__ . "../../Models/DBManager.php";
 
     <div class="pagetitle">
         <h1>Report</h1>
-    </div><!-- End Page Title -->
+    </div>
+    <!-- End Page Title -->
 
     <section class="section dashboard">
         <div class="row">
