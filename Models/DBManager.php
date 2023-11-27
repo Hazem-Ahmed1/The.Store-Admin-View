@@ -64,19 +64,6 @@ class DBManager {
         $this->conn->close();
     }
     # method that return the column names of a table in array
-    public function getCols($tableName){
-        $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'";
-        $result = $this->query($sql);
-        
-        // Process the result
-        $columnNames = array();
-        while ($row = $result->fetch_assoc()) {
-            $columnNames[] = $row['COLUMN_NAME'];
-        }
-
-        // Return the column names
-        return $columnNames;
-    }
     # helper functions
     # function to get the PK of a table
     public function getPrimaryKey($tableName) {
@@ -256,6 +243,15 @@ class DBManager {
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         return $row['result'];
+    }
+    public function DBinsert($stmt)
+    {
+      $result = $this->conn->query($stmt);
+      if ($result === true) {
+        return true;
+      } else {
+        return false;
+      }
     }
     
 
