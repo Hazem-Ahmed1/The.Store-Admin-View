@@ -1,5 +1,24 @@
 
+    <?php
+      if (session_status() == PHP_SESSION_NONE) {
+        // Start the session
+        session_start();
+    }
+      if (!isset($_SESSION["userId"])) {
+        header("location:../Authentication/login.php ");
+      } else {
+        if ($_SESSION["userRole"] != "admin") {
+          header("location:../Authentication/login.php ");
+        }
+      }
     
+    
+    
+    
+    
+    
+    
+    ?>
   
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">

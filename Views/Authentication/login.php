@@ -4,6 +4,9 @@
 
 require_once "./../../Models/user.php";
 require_once "./../../Models/AuthManager.php";
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 
 if (isset($_SESSION["userId"]) && isset($_SESSION["userRole"])) {
   if ($_SESSION["userRole"] == "customer") {
@@ -14,7 +17,11 @@ if (isset($_SESSION["userId"]) && isset($_SESSION["userRole"])) {
 }
 // logOut
 if (isset($_GET["logout"])) {
-  session_start();
+  if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+}
+
   session_unset();
   $_SESSION = array();
   session_destroy();
@@ -44,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
       if ($_SESSION["userRole"] == "admin") {
         header("location: ./../Admin/Dashboard.php");
-      } else if($_SESSION["userRole"] == "customer") {
+      } else if ($_SESSION["userRole"] == "customer") {
         header("location: ./../User/index.php");
       }
     } else {
