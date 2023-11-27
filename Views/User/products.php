@@ -1,6 +1,7 @@
 <?php
-
-require_once "../../Models/ProductManager.php";
+session_start();
+require_once "Shared/top_code.php";
+require_once "./../../Models/ProductManager.php";
 
 $ProductMNG = new ProductManager();
 
@@ -67,7 +68,7 @@ $all_Products = $ProductMNG->viewProducts($sortType, $sortOrder);
                 <option value="price-desc" <?php echo ($sortOption === 'price-desc') ? 'selected' : ''; ?>>Expensive : Highest Price</option>
                 <option value="sales" <?php echo ($sortOption === 'sales') ? 'selected' : ''; ?>>Best Selling</option>
               </select>
-              <button type="submit" class="btn btn-primary mt-2">Sort</button>
+              <button type="submit" class="btn btn-primary mt-3">Sort</button>
             </form>
           </div>
         </div>
@@ -86,7 +87,7 @@ $all_Products = $ProductMNG->viewProducts($sortType, $sortOrder);
                   </a>
                 </div>
                 <div class="product-name">
-                  <a href="selected-product.php?id=<?php echo $product['id']; ?>">
+                  <a href="selected-product.php?id=<?php echo $product['productID']; ?>">
                     <h3 onmouseover="this.style.color='#0066ff'" onmouseout="this.style.color='#1190c2'" style="cursor: pointer; color: #1190c2;"> <?php echo $product['productName'] ?> </h3>
                   </a>
                   <p><?php echo $product['description'] ?>

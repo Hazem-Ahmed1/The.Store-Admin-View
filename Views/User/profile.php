@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once "Shared/top_code.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 

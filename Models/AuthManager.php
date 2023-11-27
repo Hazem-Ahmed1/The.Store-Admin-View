@@ -32,9 +32,8 @@ class AuthManager {
                 else {
                     /*print_r($result);*/  //Array ( [0] => Array ( [id] => 1 [name] => ahmed [email] => ahmed123@gmail.com [password] => 12345 [roleid] => 1 ) )
                     session_start();
-                    $_SESSION["userId"]=$result[0]["id"];
+                    $_SESSION["userId"]=$result[0]["userID"];
                     $_SESSION["userRole"]=$result[0]["role"];
-                    // $_SESSION["userName"]=$result[0]["name"];
                     $this->db->close();
                     return true;
                 }
@@ -48,7 +47,7 @@ class AuthManager {
 
 
     function register(user $user) {
-        $this->db = new DBManager;
+        $this->db = DBManager::getInstance();
         if($this->db) {
             $query = "insert into Users (username, password, email, phone, role) values ('{$user->get_name()}','{$user->get_password()}','{$user->get_email()}','{$user->get_phone()}','customer')";
             $result = $this->db->DBinsert($query);
@@ -69,11 +68,11 @@ class AuthManager {
 
 
     function check_email($email) {
-        $this->db = new DBManager;
+        $this->db = DBManager::getInstance();
         if($this->db) {
             $query="select email from Users;";
             $results = $this->db->select($query);
-            $this->db->close();
+            // $this->db->close();
             foreach($results as $result) {
                 if($result['email'] == $email) {
                     return false;

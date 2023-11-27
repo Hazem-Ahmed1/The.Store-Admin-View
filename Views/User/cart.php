@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once "Shared/top_code.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,8 +32,7 @@
                   <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                     <!-- Image -->
                     <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
-                      <img src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg" class="w-100 alt="
-                        Blue Jeans Jacket />
+                      <img src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg" class="w-100 alt=" Blue Jeans Jacket />
                     </div>
                     <!-- Image -->
                   </div>
@@ -40,31 +44,26 @@
                     <p class="fw-bold" style="color: var(--main-color);">
                       <i class="fa fa-check"></i> In Stoke
                     </p>
-                    <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                      title="Remove item">
+                    <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
                       <i class="fas fa-trash"></i>
                     </button>
                     <!-- Data -->
                   </div>
 
-                  <div
-                    class="col-lg-4 col-md-6 mb-4 mb-lg-0 d-flex flex-column justify-content-center align-items-center ">
+                  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 d-flex flex-column justify-content-center align-items-center ">
                     <!-- Quantity -->
                     <div class="d-flex mb-4" style="max-width: 300px">
-                      <button class="btn btn-primary px-3 me-2"
-                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                      <button class="btn btn-primary px-3 me-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                         <i class="fas fa-minus"></i>
                       </button>
 
                       <div class="form-outline">
                         <!--  -->
-                        <input id="form1" min="1" max="10" name="quantity" value="1" type="number"
-                          class="form-control" />
+                        <input id="form1" min="1" max="10" name="quantity" value="1" type="number" class="form-control" />
                         <label class="form-label" for="form1">Quantity</label>
                       </div>
 
-                      <button class="btn btn-primary px-3 ms-2"
-                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                      <button class="btn btn-primary px-3 ms-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                         <i class="fas fa-plus"></i>
                       </button>
                     </div>
@@ -86,8 +85,7 @@
                   <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                     <!-- Image -->
                     <div class="">
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/13a.webp"
-                        class="w-100" />
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Vertical/13a.webp" class="w-100" />
                     </div>
                     <!-- Image -->
                   </div>
@@ -99,8 +97,7 @@
                     <p class="fw-bold text-danger">
                       <i class="fa fa-times "></i> out of Stoke
                     </p>
-                    <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
-                      title="Remove item">
+                    <button type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
                       <i class="fas fa-trash"></i>
                     </button>
                     <!-- Data -->
@@ -150,15 +147,9 @@
                 </div>
                 <hr>
                 <p><strong>We accept</strong></p>
-                <img class="me-2" width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                  alt="Visa" />
-                <img class="me-2" width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                  alt="American Express" />
-                <img class="me-2" width="45px"
-                  src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                  alt="Mastercard" />
+                <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa" />
+                <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express" />
+                <img class="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard" />
               </div>
             </div>
           </div>

@@ -1,3 +1,13 @@
+<?php
+
+require_once "../../Models/ProductManager.php";
+
+$ProductMNG = new ProductManager();
+
+$categories = $ProductMNG->viewCategories();
+
+?>
+
 <div class="my-header container-fluid ">
   <nav class="navbar navbar-expand-md navbar-light bg-light my-3 " style=" position: sticky; top: 0rem; z-index: 10;  box-shadow: 0 0 20px #00000063; border-radius:1em;transition:.6s">
     <div class="container-fluid ">
@@ -19,29 +29,16 @@
               Category
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item page-ele" href="#">Electronics</a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li>
-                <a class="dropdown-item page-ele" href="#">Jewelery</a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li>
-                <a class="dropdown-item page-ele" href="#">Men's
-                  Clothing</a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li>
-                <a class="dropdown-item page-ele" href="#">Women's
-                  Clothing</a>
-              </li>
+              <?php
+              foreach ($categories as $cat) {
+              ?>
+                <li>
+              <a class="dropdown-item page-ele" href="selected-category.php?id=<?php echo $cat['categoryID'] ?> "><?php echo $cat['categoryName'] ?></a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+              <?php } ?>
             </ul>
           </li>
         </ul>
@@ -56,7 +53,7 @@
             <p class="d-blok d-md-none m-0 ms-1  mt-1 "> My Profile</p>
           </a>
           <!-- one for logout -->
-          <a href="../../Views/Authentication/login.php" class="ms-auto me-5 d-flex align-items-center text-black ">
+          <a href="../../Views/Authentication/login.php?logout" class="ms-auto me-5 d-flex align-items-center text-black ">
             <i class="fa fa-sign-out text-black"></i>
             <p class="d-blok d-md-none m-0 ms-1  mt-1 "> Logout</p>
           </a>

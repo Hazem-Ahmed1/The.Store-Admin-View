@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $auth = new AuthManager;
       if ($auth->register($user)) {
         $adduser = true;
-        header("Location: ../auth/login.php");
+    header("Location: ../Authentication/login.php");
       } else {
         $errMsg = "Somthing went wrong... try again later";
       }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </head>
 
-<body>
+<body style="background:#f6f9ff ;">
 
   <main>
     <div class="container">
@@ -72,21 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </div>
               <!-- End Logo -->
 
-              <?php
-              if ($adduser) {
-              ?>
-                <div data-delay="2000" class="bs-toast toast  fade toast-placement-ex bottom-0 start-50 show bg-info" role="alert" aria-live="assertive" aria-atomic="true">
-                  <div class="toast-header">
-                    <i class="bx bx-trash me-2"></i>
-                    <div class="me-auto fw-semibold">Add Succesfully</div>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                  </div>
-                </div>
-              <?php
-              }
-              ?>
-
-              <div class="card mb-3 rounded-4 border-0 shadow-lg">
+              <div class="card mb-3 rounded-4 border-0 shadow-lg  bg-light">
 
                 <div class="card-body">
 
@@ -107,21 +93,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <input type="text" name="name" class="form-control bg-light" id="yourName" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPhone" class="form-label">Your Phone</label>
-                      <input type="tel" name="phone" class="form-control" id="yourphone" required>
+                      <input type="tel" name="phone" class="form-control bg-light" id="yourphone" required>
                       <div class="invalid-feedback">Please, enter your phone!</div>
                     </div>
 
                     <div class="col-12">
                       <label for="Email" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="email" name="email" class="form-control" id="Email" required>
+                        <span class="input-group-text" id="inputGroupPrepend" style="background: #bbecff;">@</span>
+                        <input type="email" name="email" class="form-control bg-light" id="Email" required>
                         <div class="invalid-feedback">Please choose a Email.</div>
                       </div>
 
@@ -129,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" minlength="10" required>
+                      <input type="password" name="password" class="form-control bg-light" id="yourPassword" minlength="10" required>
                       <div class="invalid-feedback">Please enter your password! and must be at least 10 characters</div>
                     </div>
 

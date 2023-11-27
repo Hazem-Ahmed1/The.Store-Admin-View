@@ -1,8 +1,12 @@
+<?php
+session_start();
+require_once "Shared/top_code.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-      <?php require_once 'Shared/head-code.php' ?>
+  <?php require_once 'Shared/head-code.php' ?>
 </head>
 
 <body>

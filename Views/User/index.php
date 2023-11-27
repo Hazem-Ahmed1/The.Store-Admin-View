@@ -1,10 +1,12 @@
 <?php
-
+session_start();
+require_once "Shared/top_code.php";
 require_once "../../Models/ProductManager.php";
 
 $ProductMNG = new ProductManager();
 
 $best_Products = $ProductMNG->viewProducts('numSales', 'ASC');
+$categories = $ProductMNG->viewCategories();
 
 ?>
 <!DOCTYPE html>
@@ -30,10 +32,14 @@ $best_Products = $ProductMNG->viewProducts('numSales', 'ASC');
       <div id="carouselExampleControls" class="carousel slide rounded my-4 mx-3" data-bs-ride="carousel">
         <div class="carousel-inner rounded-4">
           <div class="carousel-item active">
-            <img src="./../../assets/img/img_us/1.png" onclick="setPage('electronics', document.getElementsByClassName('dropdown-toggle')[0])" class="d-block w-100" "="" alt=" ...">
+            <a href="selected-category.php?id=1">
+              <img src="./../../assets/img/img_us/1.png" class="d-block w-100" alt=" ...">
+            </a>
           </div>
           <div class="carousel-item">
-            <img src="./../../assets/img/img_us/4.png" onclick="setPage('jewelery', document.getElementsByClassName('dropdown-toggle')[0])" class="d-block w-100" "="" alt=" ...">
+            <a href="selected-category.php?id=4">
+              <img src="./../../assets/img/img_us/4.png" class="d-block w-100" alt=" ...">
+            </a>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -48,46 +54,27 @@ $best_Products = $ProductMNG->viewProducts('numSales', 'ASC');
 
       <div class="category-card container-fluid pb-4 ">
         <div class="cards row">
-          <div class="p-0 p-3 col-6 col-lg-3">
-            <div class="card rounded-3 overflow-hidden " onclick="setPage('womenClothing', document.getElementsByClassName('dropdown-toggle')[0])">
-              <div class="cate-img">
-                <img src="./../../assets/img/img_us/cate-1.png" class="" alt="...">
-              </div>
-              <div class="card-text">
-                <h5 class="card-title fw-bold">Women's Clothing</h5>
-              </div>
-            </div>
-          </div>
-          <div class="p-0 p-3 col-6 col-lg-3">
-            <div class="card rounded-3 overflow-hidden " onclick="setPage('jewelery', document.getElementsByClassName('dropdown-toggle')[0])">
-              <div class="cate-img">
-                <img src="./../../assets/img/img_us/cate-4.png" class="" alt="...">
-              </div>
-              <div class="card-text">
-                <h5 class="card-title fw-bold">Jewelery</h5>
-              </div>
-            </div>
-          </div>
-          <div class="p-0 p-3 col-6 col-lg-3">
-            <div class="card rounded-3 overflow-hidden " onclick="setPage('menClothing', document.getElementsByClassName('dropdown-toggle')[0])">
-              <div class="cate-img">
-                <img src="./../../assets/img/img_us/cate-3.png" class="" alt="...">
-              </div>
-              <div class="card-text">
-                <h5 class="card-title fw-bold">Men's Clothing</h5>
+          <?php
+          foreach ($categories as $category) {
+          ?>
+            <div class="p-0 p-3 col-6 col-lg-3">
+              <div class="card rounded-3 overflow-hidden ">
+
+                <div class="cate-img">
+                  <a href="selected-category.php?id=<?php echo $category['categoryID']; ?>">
+                    <img src="<?php echo $category['imgURL'] ?>" class="" alt="...">
+                  </a>
+                </div>
+                <div class="card-text">
+                  <a href="selected-category.php?id=<?php echo $category['categoryID']; ?>">
+                    <h5 class="card-title fw-bold "><?php echo $category['categoryName'] ?></h5>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="p-0 p-3 col-6 col-lg-3">
-            <div class="card rounded-3 overflow-hidden " onclick="setPage('electronics', document.getElementsByClassName('dropdown-toggle')[0])">
-              <div class="cate-img">
-                <img src="./../../assets/img/img_us/cate-2.png" class="" alt="...">
-              </div>
-              <div class="card-text">
-                <h5 class="card-title fw-bold ">Electronics</h5>
-              </div>
-            </div>
-          </div>
+          <?php
+          }
+          ?>
         </div>
       </div>
 
@@ -108,7 +95,7 @@ $best_Products = $ProductMNG->viewProducts('numSales', 'ASC');
                     </a>
                   </div>
                   <div class="product-name">
-                    <a href="selected-product.php?id=<?php echo $product['id']; ?>">
+                    <a href="selected-product.php?id=<?php echo $product['productID']; ?>">
                       <h3 onmouseover="this.style.color='#0066ff'" onmouseout="this.style.color='#1190c2'" style="cursor: pointer; color: #1190c2;"> <?php echo $product['productName'] ?> </h3>
                     </a>
                     <p><?php echo $product['description'] ?>

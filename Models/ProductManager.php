@@ -15,18 +15,14 @@ class ProductManager
 
   public function viewProducts($sortType = 'productName', $sortOrder = 'ASC', $limit = null)
   {
-
     $this->db = DBManager::getInstance();
 
     if ($this->db) {
-      // Validate the sortType to prevent SQL injection
       $allowedSortTypes = ['productName', 'price', 'numSales']; // Add more as needed
       $sortType = in_array($sortType, $allowedSortTypes) ? $sortType : 'productName';
 
-      // Validate the sortOrder to prevent SQL injection
       $sortOrder = strtoupper($sortOrder) === 'DESC' ? 'DESC' : 'ASC';
 
-      // Construct the SQL query with LIMIT if $limit is provided
       $limitClause = $limit ? "LIMIT $limit" : '';
       $stmt = "SELECT * FROM Products ORDER BY $sortType $sortOrder $limitClause";
 
@@ -39,4 +35,57 @@ class ProductManager
       }
     }
   }
+
+
+  public function viewCategories()
+  {
+    $this->db = DBManager::getInstance();
+
+    if ($this->db) {
+      $stmt = "SELECT * FROM Categories";
+      $result = $this->db->select($stmt);
+
+      if ($result) {
+        return $result;
+      } else {
+        return false;
+      }
+    }
+  }
+
+
+  public function viewCategyInfo($id)
+  {
+    $this->db = DBManager::getInstance();
+
+    if ($this->db) {
+      $stmt = "SELECT * FROM Categories where categoryID = $id";
+      $result = $this->db->select($stmt);
+
+      if ($result) {
+        return $result;
+      } else {
+        return false;
+      }
+    }
+  }
+
+
+  public function viewCategyProducts($id)
+  {
+    $this->db = DBManager::getInstance();
+
+    if ($this->db) {
+      $stmt = "SELECT * FROM Products where categoryID = $id";
+      $result = $this->db->select($stmt);
+
+      if ($result) {
+        return $result;
+      } else {
+        return false;
+      }
+    }
+  }
+
+
 }

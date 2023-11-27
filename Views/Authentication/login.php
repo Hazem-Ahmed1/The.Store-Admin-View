@@ -2,11 +2,16 @@
 
 // requires
 
-require_once __DIR__ . "../../../Models/user.php";
-require_once __DIR__ . "../../../Models/AuthManager.php";
+require_once "./../../Models/user.php";
+require_once "./../../Models/AuthManager.php";
 
-
-
+if (isset($_SESSION["userId"]) && isset($_SESSION["userRole"])) {
+  if ($_SESSION["userRole"] == "customer") {
+    header("location: ./../User/index.php");
+  } else if ($_SESSION["userRole"] == "admin") {
+    header("location: ./../Admin/Dashboard.php");
+  }
+}
 // logOut
 if (isset($_GET["logout"])) {
   session_start();
@@ -39,9 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
       if ($_SESSION["userRole"] == "admin") {
         header("location: ./../Admin/Dashboard.php");
-      } else if ($_SESSION["userRole"] == "customer") {
+      } else if($_SESSION["userRole"] == "customer") {
         header("location: ./../User/index.php");
-        
       }
     } else {
       $errMsg = "You have entered wrong email or password";
@@ -73,14 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center ">
 
               <div class="d-flex justify-content-center py-4 logo d-flex align-items-center w-auto text-black">
                 <a class="ms-3 d-flex align-items-center fw-bold fs-3" style="color: #1190c2; scale:1.5; " href="#">The<span style="color: #bbb3b3; font-weight: bold">.Store</span></a>
               </div>
               <!-- End Logo -->
 
-              <div class="card mb-3 rounded-4 border-0 shadow-lg">
+              <div class="card mb-3 rounded-4 border-0 shadow-lg bg-light">
 
                 <div class="card-body ">
 
@@ -102,15 +106,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="email" name="email" class="form-control" id="Email" required>
+                        <span class="input-group-text" id="inputGroupPrepend" style="background:#bbecff ;">@</span>
+                        <input type="email" name="email" class="form-control bg-light" id="Email" required>
                         <div class="invalid-feedback">Please enter your Email.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <input type="password" name="password" class="form-control bg-light" id="yourPassword" required>
                       <div class="invalid-feedback">Please enter your password! and must be at least 10 characters</div>
                     </div>
 
