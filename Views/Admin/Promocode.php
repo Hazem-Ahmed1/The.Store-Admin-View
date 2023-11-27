@@ -130,7 +130,7 @@
                     </div> -->
                     <div class="col-lg-12">
 
-                        <div class="card" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../../../assets/img/img_ad/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg'); background-size: cover; ">
+                        <div class="card" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('./../../assets/img/img_ad/DISCOUNT_TACTICS_NEW_COLOURS_FOR_VANESSA.jpg'); background-size: cover; ">
                             <div class="card-body">
                                 <h3 class="card-title" style="font-size: 60px;">Add a Promocode</h3>
                                 <form class="row g-3"  method="post">
