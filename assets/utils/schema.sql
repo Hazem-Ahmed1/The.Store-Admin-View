@@ -39,6 +39,18 @@ CREATE TABLE Products (
 ALTER TABLE Products
 ADD COLUMN imgURL varchar(255);
 
+
+-- Cart table 🆕 
+CREATE TABLE Cart (
+CartID INT PRIMARY KEY AUTO_INCREMENT,
+UserID INT,
+ProductID INT,
+Quantity INT,
+FOREIGN KEY (UserID) REFERENCES Users(UserID),
+FOREIGN KEY (ProductID) REFERENCES Products (ProductID)
+);
+
+
 -- Orders Table
 CREATE TABLE Orders (
     orderID INT PRIMARY KEY AUTO_INCREMENT,
