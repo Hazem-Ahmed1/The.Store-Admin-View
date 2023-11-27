@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($_SESSION["userRole"] == "admin") {
         header("location: ./../Admin/Dashboard.php");
       } else if ($_SESSION["userRole"] == "customer") {
-        header("location: ./../Admin/index.php");
+        header("location: ./../User/index.php");
         
       }
     } else {
