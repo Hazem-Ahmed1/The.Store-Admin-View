@@ -3,12 +3,15 @@
 // $_SESSION["roleId"] = 1;
 
   //dont enter untill login
-  // session_start();
-  // if (!isset($_SESSION["userId"])) {
-  //   header("location:../Authentication/login.php ");
-  // } else {
-  //   if ($_SESSION["userRole"] != "customer") {
-  //     header("location:../Authentication/login.php ");
-  //   }
-  // }
+  if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+}
+  if (!isset($_SESSION["userId"])) {
+    header("location:../Authentication/login.php ");
+  } else {
+    if ($_SESSION["userRole"] != "customer") {
+      header("location:../Authentication/login.php ");
+    }
+  }
 ?>
