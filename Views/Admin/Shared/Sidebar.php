@@ -40,7 +40,7 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link collapsed" href="../../Views/Authentication/login.php">
+              <a class="nav-link collapsed" href="../../Views/Authentication/login.php?logout">
                   <i class="fa-solid fa-right-from-bracket"></i>
                   <span>Logout</span>
               </a>
