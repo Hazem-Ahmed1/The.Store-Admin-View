@@ -38,9 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_start();
       }
       if ($_SESSION["userRole"] == "admin") {
-        header("location: ../../Admin/Dashboard.php");
+        header("location: ./../Admin/Dashboard.php");
       } else if ($_SESSION["userRole"] == "customer") {
-        header("location: ./../User/index.php");
+        header("location: ./../Admin/index.php");
+        
       }
     } else {
       $errMsg = "You have entered wrong email or password";

@@ -1,6 +1,6 @@
 <?php
 
-require_once "./../../Models/ProductManager.php";
+require_once "../../Models/ProductManager.php";
 
 $ProductMNG = new ProductManager();
 

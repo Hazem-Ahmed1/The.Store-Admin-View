@@ -15,6 +15,7 @@ class ProductManager
 
   public function viewProducts($sortType = 'productName', $sortOrder = 'ASC', $limit = null)
   {
+
     $this->db = DBManager::getInstance();
 
     if ($this->db) {
