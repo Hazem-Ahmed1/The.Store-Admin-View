@@ -2,7 +2,7 @@
     require_once './Shared/Links.php';
     require_once './Shared/Header.php';
     require_once './Shared/Sidebar.php';
-    require_once __DIR__ . "./../../Models/DBManager.php";
+    require_once __DIR__ . "../../../Models/DBManager.php";
 ?>
 <?php
 

@@ -2,8 +2,8 @@
 
 // requires
 
-require_once __DIR__ . "./../../Models/user.php";
-require_once __DIR__ . "./../../Models/AuthManager.php";
+require_once __DIR__ . "../../../Models/user.php";
+require_once __DIR__ . "../../../Models/AuthManager.php";
 
 
 

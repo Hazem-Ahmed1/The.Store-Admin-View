@@ -109,7 +109,7 @@ class DBManager {
         $sql = "update $tableName set ";
         $params = [];
         foreach($colsValues as $colName => $colsValue){
-            $params[] = "$colName = ? ";
+            $params[] = "$colName = ? "; 
         }
         /*implode(",", ['lastname', 'email', 'phone']); ====>"lastname,email,phone" */
         $sql .= implode(", ", $params)." where $idColName = ? ";
@@ -129,7 +129,7 @@ class DBManager {
         }
         $types .= $this->getType($id);
         $values[] = $id;
-        // ... unpack like * in pyhton
+        // ... unpack like * in pyhton 
         $statement->bind_param($types, ...$values);
         $statement->execute();
         if($statement->error){
